@@ -1,7 +1,7 @@
 <template>
   <nav class="flex h-16 items-center justify-end bg-white shadow">
     <RouterLink to="/">Home</RouterLink>
-    <RouterLink to="/project1">Project 1</RouterLink>
+    <RouterLink to="/bar-chart">Bar Chart</RouterLink>
     <RouterLink to="/project2">Project 2</RouterLink>
     <RouterLink to="/project3">Project 3</RouterLink>
     <RouterLink to="/project4">Project 4</RouterLink>

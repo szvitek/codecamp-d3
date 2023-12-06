@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import ProjectView from '../views/ProjectView.vue'
+import HomeView from '@/views/HomeView.vue'
+import BarChartView from '@/views/BarChartView.vue'
+import ProjectView from '@/views/ProjectView.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -11,9 +12,9 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/project1',
-      name: 'project1',
-      component: ProjectView
+      path: '/bar-chart',
+      name: 'bar-chart',
+      component: BarChartView
     },
     {
       path: '/project2',

@@ -1,3 +1,7 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+.page {
+  @apply mx-8 min-h-[50vh] min-w-max rounded-md bg-white p-5 shadow-md flex flex-col items-center;
+}

@@ -7,7 +7,7 @@ import { storeToRefs } from 'pinia'
 // CONSTS
 const width = 900
 const height = 460
-const margin = { top: 40, bottom: 40, left: 40, right: 40 }
+const margin = { top: 40, bottom: 40, left: 80, right: 40 }
 const parseTime = d3.timeParse('%Y-%m-%d')
 
 // STORE
@@ -71,8 +71,6 @@ const xScale = computed(() => {
 // LIFECYCLE HOOKS
 onMounted(async () => {
   await store.fetchData()
-  const yMax = d3.max(dataset.value, (d) => d[1])
-  console.log('ym', yMax)
 
   watchEffect(() => {
     if (!axisLeftRef.value) return
@@ -91,9 +89,13 @@ onMounted(async () => {
       ref="tooltipRef"
       id="tooltip"
       v-show="displayTooltip"
-      class="absolute top-[370px] flex w-40 translate-x-16 flex-col items-center justify-center rounded-md border bg-white py-4 opacity-90 shadow-lg"
+      class="absolute top-[370px] flex w-40 translate-x-24 flex-col items-center justify-center rounded-md border bg-white py-4 opacity-90 shadow-lg"
     ></div>
-    <svg :width="width + margin.left + margin.right" :height="height + margin.top + margin.bottom">
+    <svg
+      :width="width + margin.left + margin.right"
+      :height="height + margin.top + margin.bottom"
+      class="border-2 border-dashed border-green-500 bg-slate-100"
+    >
       <g :transform="`translate(${margin.left}, ${margin.top})`">
         <rect
           class="bar fill-green-600"

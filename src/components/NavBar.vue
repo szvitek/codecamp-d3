@@ -2,7 +2,7 @@
   <nav class="flex h-16 items-center justify-end bg-white shadow">
     <RouterLink to="/">Home</RouterLink>
     <RouterLink to="/bar-chart">Bar Chart</RouterLink>
-    <RouterLink to="/project2">Project 2</RouterLink>
+    <RouterLink to="/scatter-plot">Scatterplot</RouterLink>
     <RouterLink to="/project3">Project 3</RouterLink>
     <RouterLink to="/project4">Project 4</RouterLink>
     <RouterLink to="/project5">Project 5</RouterLink>

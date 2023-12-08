@@ -3,7 +3,7 @@
     <RouterLink to="/">Home</RouterLink>
     <RouterLink to="/bar-chart">Bar Chart</RouterLink>
     <RouterLink to="/scatter-plot">Scatterplot</RouterLink>
-    <RouterLink to="/project3">Project 3</RouterLink>
+    <RouterLink to="/heat-map">Heat Map</RouterLink>
     <RouterLink to="/project4">Project 4</RouterLink>
     <RouterLink to="/project5">Project 5</RouterLink>
   </nav>

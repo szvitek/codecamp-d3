@@ -3,12 +3,13 @@
     <h1 class="mb-4 text-4xl font-bold text-green-500">{{ title }}</h1>
   </div>
   <div class="page">
-    <slot />
+    <slot v-if="!isLoading" />
+    <div v-else>Loading...</div>
   </div>
 </template>
 
 <script setup lang="ts">
-defineProps<{ title: string }>()
+defineProps<{ title: string, isLoading: boolean }>()
 </script>
 
 <style scoped></style>

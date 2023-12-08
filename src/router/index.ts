@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import BarChartView from '@/views/BarChartView.vue'
 import ScatterPlotView from '@/views/ScatterPlotView.vue'
+import HeatMapView from '@/views/HeatMapView.vue'
 import ProjectView from '@/views/ProjectView.vue'
 
 const router = createRouter({
@@ -23,9 +24,9 @@ const router = createRouter({
       component: ScatterPlotView
     },
     {
-      path: '/project3',
-      name: 'project3',
-      component: ProjectView
+      path: '/heat-map',
+      name: 'heat-map',
+      component: HeatMapView
     },
     {
       path: '/project4',

@@ -93,7 +93,6 @@ onMounted(async () => {
       v-show="displayTooltip"
       class="absolute flex flex-col items-center justify-center rounded-md px-4 py-2 text-sm text-slate-800 opacity-90 shadow-lg"
       :class="[selectedDataPoint?.Doping ? 'bg-orange-400' : 'bg-green-400']"
-      data-test="999"
       :data-year="selectedDataPoint?.Year"
       :data-xvalue="selectedDataPoint?.Time"
     >
@@ -110,7 +109,6 @@ onMounted(async () => {
         </div>
       </template>
     </div>
-    <!-- class="bg-slate-300" -->
     <svg
       :width="width + marginLeft + marginRight"
       :height="height + marginTop + marginBottom"

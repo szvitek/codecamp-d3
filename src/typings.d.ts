@@ -8,3 +8,14 @@ export type CyclistData = {
   Doping: string
   URL: string
 }
+
+export type MonthlyVariance = {
+  year: number
+  month: number
+  variance: number
+}
+
+export type HeatMapDataset = {
+  baseTemperature: number
+  monthlyVariance: MonthlyVariance[]
+}

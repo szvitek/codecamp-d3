@@ -9,6 +9,7 @@ const url =
 
 // dummy placeholder store
 export const useBarChartStore = defineStore('barChart', () => {
+  const title = ref('United States GDP')
   const dataset = ref<Dataset>([])
   const isLoading = ref(false)
 
@@ -24,5 +25,5 @@ export const useBarChartStore = defineStore('barChart', () => {
     }
   }
 
-  return { dataset, fetchData }
+  return { title, dataset, isLoading, fetchData }
 })

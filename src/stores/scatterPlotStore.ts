@@ -1,14 +1,17 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import type { CyclistData } from '@/typings'
 
 const url =
   'https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/cyclist-data.json'
 
 export const useScatterPlotStore = defineStore('scatterPlot', () => {
+  const title = ref('Doping in Professional Bicycle Racing')
   const dataset = ref<CyclistData[]>([])
   const isLoading = ref(false)
+  
+  const description = computed(() => `${dataset.value.length} Fastest times up Alpe d'Huez`)
 
   async function fetchData() {
     try {
@@ -22,5 +25,5 @@ export const useScatterPlotStore = defineStore('scatterPlot', () => {
     }
   }
 
-  return { dataset, fetchData }
+  return { title, dataset, isLoading, description, fetchData }
 })

@@ -65,8 +65,6 @@ const colorScale = computed(() => {
 
 // LIFECYCLE HOOKS
 onMounted(async () => {
-  await store.fetchData()
-
   watchEffect(() => {
     if (!axisLeftRef.value) return
 

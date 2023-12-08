@@ -70,8 +70,6 @@ const xScale = computed(() => {
 
 // LIFECYCLE HOOKS
 onMounted(async () => {
-  await store.fetchData()
-
   watchEffect(() => {
     if (!axisLeftRef.value) return
     d3.select(axisLeftRef.value).call(d3.axisLeft(yScale.value))

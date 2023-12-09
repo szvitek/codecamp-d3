@@ -1,15 +1,14 @@
 <template>
   <nav class="flex h-16 items-center justify-end bg-white shadow">
-    <RouterLink to="/">Home</RouterLink>
-    <RouterLink to="/bar-chart">Bar Chart</RouterLink>
-    <RouterLink to="/scatter-plot">Scatterplot</RouterLink>
-    <RouterLink to="/heat-map">Heat Map</RouterLink>
-    <RouterLink to="/project4">Project 4</RouterLink>
-    <RouterLink to="/project5">Project 5</RouterLink>
+    <RouterLink v-for="({ name, to }, index) in menuItems" :key="index" :to="to">
+      {{ name }}
+    </RouterLink>
   </nav>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import menuItems from '@/menuItems'
+</script>
 
 <style scoped>
 nav a {

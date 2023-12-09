@@ -4,7 +4,7 @@
   </div>
   <div class="page">
     <slot v-if="!isLoading" />
-    <div v-else>Loading...</div>
+    <div v-else class="text-4xl font-bold text-green-500 animate-ping uppercase">Loading Data...</div>
   </div>
 </template>
 

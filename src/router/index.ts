@@ -4,6 +4,7 @@ import BarChartView from '@/views/BarChartView.vue'
 import ScatterPlotView from '@/views/ScatterPlotView.vue'
 import HeatMapView from '@/views/HeatMapView.vue'
 import ProjectView from '@/views/ProjectView.vue'
+import ChoroplethMapView from '@/views/ChoroplethMapView.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -29,9 +30,9 @@ const router = createRouter({
       component: HeatMapView
     },
     {
-      path: '/project4',
-      name: 'project4',
-      component: ProjectView
+      path: '/choropleth-map',
+      name: 'choropleth-map',
+      component: ChoroplethMapView
     },
     {
       path: '/project5',

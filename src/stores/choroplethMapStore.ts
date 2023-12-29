@@ -1,8 +1,7 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 import { ref } from 'vue'
-import * as d3 from 'd3'
-import type { CountiesDataset, EducationDataset } from '@/typings'
+import type { EducationDataset, CountiesDataSet } from '@/typings'
 
 const urlEdu =
   'https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/for_user_education.json'
@@ -17,13 +16,13 @@ export const useChoroplethMapStore = defineStore('choroplethMap', () => {
   )
 
   const datasetEdu = ref<EducationDataset>()
-  const datasetCounties = ref<CountiesDataset>()
+  const datasetCounties = ref<CountiesDataSet>()
 
   async function fetchData() {
     try {
       isLoading.value = true
       const eduReq = await axios.get<EducationDataset>(urlEdu)
-      const countiesReq = await axios.get<CountiesDataset>(urlCounties)
+      const countiesReq = await axios.get<CountiesDataSet>(urlCounties)
       const [{ data: dataEdu }, { data: dataCounties }] = await Promise.all([eduReq, countiesReq])
 
       datasetEdu.value = dataEdu

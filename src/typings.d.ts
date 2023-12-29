@@ -20,12 +20,14 @@ export type HeatMapDataset = {
   monthlyVariance: MonthlyVariance[]
 }
 
-export type EducationDataset = {
+export type EducationData = {
   fips: number
   state: State
   area_name: string
   bachelorsOrHigher: number
-}[]
+}
+
+export type EducationDataset = EducationData[]
 
 export enum State {
   Ak = 'AK',
@@ -81,55 +83,18 @@ export enum State {
   Wy = 'WY'
 }
 
-export type CountiesDataset = {
-  type: string
-  objects: Objects
-  arcs: Array<Array<number[]>>
-  bbox: number[]
-  transform: Transform
-}
-
-export type Objects = {
-  counties: Counties
-  states: States
-  nation: Nation
-}
-
-export type Counties = {
-  type: string
-  geometries: CountiesGeometry[]
-}
-
-export type CountiesGeometry = {
-  type: Type
-  id: number
-  arcs: Array<Array<number[] | number>>
-}
-
-export type Type = 'Polygon' | 'MultiPolygon'
-
-export type Nation = {
-  type: string
-  geometries: NationGeometry[]
-}
-
-export type NationGeometry = {
-  type: Type
-  arcs: Array<Array<number[]>>
-}
-
-export type States = {
-  type: string
-  geometries: StatesGeometry[]
-}
-
-export type StatesGeometry = {
-  type: Type
-  arcs: Array<Array<number[]>>
-  id: string
-}
-
-export type Transform = {
-  scale: number[]
-  translate: number[]
+export interface CountiesDataSet extends TopoJSON.Topology {
+  objects: {
+    counties: {
+      type: Type
+      geometries: Array<TopoJSON.Polygon | TopoJSON.MultiPolygon>
+    }
+    states: {
+      type: 'GeometryCollection'
+      geometries: Array<TopoJSON.Polygon | TopoJSON.MultiPolygon>
+    }
+    nation: TopoJSON.GeometryCollection
+  }
+  bbox: [number, number, number, number]
+  transform: TopoJSON.Transform
 }

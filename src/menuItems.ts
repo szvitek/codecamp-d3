@@ -20,7 +20,7 @@ export default [
     to: '/choropleth-map'
   },
   {
-    name: 'Project 5',
-    to: '/project5'
+    name: 'Tree Map',
+    to: '/tree-map'
   }
 ]

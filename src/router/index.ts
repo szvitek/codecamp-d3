@@ -3,8 +3,8 @@ import HomeView from '@/views/HomeView.vue'
 import BarChartView from '@/views/BarChartView.vue'
 import ScatterPlotView from '@/views/ScatterPlotView.vue'
 import HeatMapView from '@/views/HeatMapView.vue'
-import ProjectView from '@/views/ProjectView.vue'
 import ChoroplethMapView from '@/views/ChoroplethMapView.vue'
+import TreemapView from '@/views/TreemapView.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -35,9 +35,9 @@ const router = createRouter({
       component: ChoroplethMapView
     },
     {
-      path: '/project5',
-      name: 'project5',
-      component: ProjectView
+      path: '/tree-map',
+      name: 'tree-map',
+      component: TreemapView
     },
     {
       path: '/*',

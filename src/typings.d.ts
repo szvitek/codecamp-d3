@@ -98,3 +98,19 @@ export interface CountiesDataSet extends TopoJSON.Topology {
   bbox: [number, number, number, number]
   transform: TopoJSON.Transform
 }
+
+export type TreemapDataset = {
+  name: string
+  children: Categories[]
+}
+
+export type Categories = {
+  name: string
+  children: Category[]
+}
+
+export type Category = {
+  name: string
+  category: string
+  value: string
+}

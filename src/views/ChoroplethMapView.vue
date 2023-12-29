@@ -19,7 +19,7 @@ onMounted(async () => {
 
 <template>
   <DefaultLayout title="Visualize Data with a Choropleth Map" :isLoading="isLoading">
-    <div class="flex w-1/2 items-center justify-evenly text-center">
+    <div class="flex w-1/2 items-center justify-evenly pb-5 text-center">
       <div
         class="cursor-pointer hover:underline"
         :class="[selectedMode === 'd3' ? 'text-green-500' : 'text-slate-400']"

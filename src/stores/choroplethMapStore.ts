@@ -21,8 +21,8 @@ export const useChoroplethMapStore = defineStore('choroplethMap', () => {
   async function fetchData() {
     try {
       isLoading.value = true
-      const eduReq = await axios.get<EducationDataset>(urlEdu)
-      const countiesReq = await axios.get<CountiesDataSet>(urlCounties)
+      const eduReq = axios.get<EducationDataset>(urlEdu)
+      const countiesReq = axios.get<CountiesDataSet>(urlCounties)
       const [{ data: dataEdu }, { data: dataCounties }] = await Promise.all([eduReq, countiesReq])
 
       datasetEdu.value = dataEdu

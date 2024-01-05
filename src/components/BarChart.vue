@@ -21,11 +21,14 @@ const axisBottomRef = ref<SVGGElement>()
 const tooltipRef = ref<HTMLDivElement>()
 
 //METHODS
-function showTooltip(x: string, y: number) {
+function showTooltip(x: string, y: number, event: MouseEvent) {
   displayTooltip.value = true
   const formattedDate = d3.timeFormat('%Y Q%q')(new Date(x))
   tooltipRef.value!.setAttribute('data-date', x)
-  tooltipRef.value!.style.left = `${xScale.value(parseTime(x) as Date)}px`
+
+  tooltipRef.value!.style.top = `${event.clientY}px`
+  tooltipRef.value!.style.left = `${event.clientX}px`
+
   tooltipRef.value!.innerHTML = `
     <h2 class="font-bold">${formattedDate}</h2>
     <div class="text-sm">$${y} Billion</div>
@@ -82,16 +85,15 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="chart-container relative">
+  <div class="chart-container relative w-full">
     <div
       ref="tooltipRef"
       id="tooltip"
       v-show="displayTooltip"
-      class="absolute top-[370px] flex w-40 translate-x-24 flex-col items-center justify-center rounded-md border bg-white py-4 opacity-90 shadow-lg"
+      class="fixed flex w-40 -translate-y-1/2 translate-x-3 flex-col items-center justify-center rounded-md border bg-white py-4 opacity-90 shadow-lg"
     ></div>
     <svg
-      :width="width + margin.left + margin.right"
-      :height="height + margin.top + margin.bottom"
+      :viewBox="`0,0,${width + margin.left + margin.right},${height + margin.top + margin.bottom}`"
       class="border-2 border-dashed border-green-500 bg-slate-100"
     >
       <g :transform="`translate(${margin.left}, ${margin.top})`">
@@ -105,7 +107,7 @@ onMounted(async () => {
           :height="height - yScale(d[1])"
           :data-date="d[0]"
           :data-gdp="d[1]"
-          @mouseenter="showTooltip(d[0], d[1])"
+          @mouseenter="showTooltip(d[0], d[1], $event)"
           @mouseleave="hideTooltip"
         />
         <g id="y-axis" ref="axisLeftRef" />

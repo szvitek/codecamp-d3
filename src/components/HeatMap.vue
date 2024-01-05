@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-import { computed, nextTick, onMounted, ref, watchEffect } from 'vue'
+import { computed, onMounted, ref, watchEffect } from 'vue'
 import * as d3 from 'd3'
 import { useHeatMapStore } from '@/stores/heatMapStore'
 import type { MonthlyVariance } from '@/typings'
@@ -34,17 +34,11 @@ const maxTemp = ref(
 )
 
 //METHODS
-async function showTooltip(data: MonthlyVariance) {
-  const { year, month } = data
+async function showTooltip(data: MonthlyVariance, event: MouseEvent) {
   selectedDataPoint.value = data
 
-  // wait for render the tooltip to get its value
-  await nextTick()
-
-  tooltipRef.value!.style.left = `${
-    x.value(year) + marginLeft - tooltipRef.value?.clientWidth! / 2
-  }px`
-  tooltipRef.value!.style.top = `${y.value(getMonthName(month))! - 40}px`
+  tooltipRef.value!.style.top = `${event.clientY}px`
+  tooltipRef.value!.style.left = `${event.clientX}px`
 }
 
 function getMonthName(month: number) {
@@ -111,12 +105,12 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="chart-container relative" v-if="dataset.length > 0">
+  <div class="chart-container relative w-full" v-if="dataset.length > 0">
     <div
       ref="tooltipRef"
       id="tooltip"
       v-show="selectedDataPoint"
-      class="absolute flex flex-col items-center justify-center rounded-md bg-slate-800 px-4 py-2 text-center text-sm font-semibold text-white opacity-90 shadow-lg"
+      class="fixed flex -translate-x-1/2 -translate-y-[120%] flex-col items-center justify-center rounded-md bg-slate-800 px-4 py-2 text-center text-sm font-semibold text-white opacity-90 shadow-lg"
       :data-year="selectedDataPoint?.year"
     >
       <template v-if="selectedDataPoint">
@@ -129,8 +123,7 @@ onMounted(async () => {
       </template>
     </div>
     <svg
-      :width="width + marginLeft + marginRight"
-      :height="height + marginTop + marginBottom"
+      :viewBox="`0,0,${width + marginLeft + marginRight},${height + marginTop + marginBottom}`"
       class="border-2 border-dashed border-green-500 bg-slate-100"
     >
       <g :transform="`translate(${marginLeft}, ${marginTop})`">
@@ -149,7 +142,7 @@ onMounted(async () => {
             :data-year="d.year"
             :data-month="d.month - 1"
             :data-temp="d.variance"
-            @mouseenter="showTooltip(d)"
+            @mouseenter="showTooltip(d, $event)"
             @mouseleave="selectedDataPoint = null"
           />
           <g id="legend" :transform="`translate(0, ${height + 70})`" stroke-width="1">

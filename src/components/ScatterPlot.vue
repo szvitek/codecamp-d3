@@ -26,12 +26,11 @@ const store = useScatterPlotStore()
 const { dataset } = storeToRefs(store)
 
 //METHODS
-function showTooltip(data: CyclistData) {
-  const { Year, Time } = data
+function showTooltip(data: CyclistData, event: MouseEvent) {
   selectedDataPoint.value = data
   displayTooltip.value = true
-  tooltipRef.value!.style.left = `${x.value(Year) + 100}px`
-  tooltipRef.value!.style.top = `${y.value(parseTime(Time.toString()) as Date)}px`
+  tooltipRef.value!.style.top = `${event.clientY}px`
+  tooltipRef.value!.style.left = `${event.clientX}px`
 }
 
 // COMPUTED PROPS
@@ -84,12 +83,12 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="chart-container relative">
+  <div class="chart-container relative w-full">
     <div
       ref="tooltipRef"
       id="tooltip"
       v-show="displayTooltip"
-      class="absolute flex flex-col items-center justify-center rounded-md px-4 py-2 text-sm text-slate-800 opacity-90 shadow-lg"
+      class="fixed flex -translate-y-1/2 translate-x-3 flex-col items-center justify-center rounded-md px-4 py-2 text-sm text-slate-800 opacity-90 shadow-lg"
       :class="[selectedDataPoint?.Doping ? 'bg-orange-400' : 'bg-green-400']"
       :data-year="selectedDataPoint?.Year"
       :data-xvalue="selectedDataPoint?.Time"
@@ -108,8 +107,7 @@ onMounted(async () => {
       </template>
     </div>
     <svg
-      :width="width + marginLeft + marginRight"
-      :height="height + marginTop + marginBottom"
+      :viewBox="`0,0,${width + marginLeft + marginRight},${height + marginTop + marginBottom}`"
       class="border-2 border-dashed border-green-500 bg-slate-100"
     >
       <g :transform="`translate(${marginLeft}, ${marginTop})`">
@@ -149,7 +147,7 @@ onMounted(async () => {
           :fill="colorScale(d.Doping ? 'positive' : 'negative') as string"
           :data-xvalue="d.Year"
           :data-yvalue="parseTime(d.Time)?.toString()"
-          @mouseenter="showTooltip(d)"
+          @mouseenter="showTooltip(d, $event)"
           @mouseleave="displayTooltip = false"
         />
       </g>

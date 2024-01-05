@@ -10,8 +10,8 @@ const width = 900
 const height = 460
 const marginTop = 40
 const marginBottom = 140
-const marginLeft = 80
-const marginRight = 80
+const marginLeft = 40
+const marginRight = 40
 
 // #DATA (refs)
 const store = useTreeMapStore()
@@ -79,7 +79,7 @@ async function moveTooltip(event: MouseEvent) {
 </script>
 
 <template>
-  <div class="chart-container relative">
+  <div class="chart-container relative w-full">
     <div
       ref="tooltipRef"
       id="tooltip"
@@ -96,7 +96,8 @@ async function moveTooltip(event: MouseEvent) {
     <svg
       :width="width + marginLeft + marginRight"
       :height="height + marginTop + marginBottom"
-      class="border-2 border-dashed border-green-500 bg-slate-100"
+      :viewBox="`0 0 ${width + marginLeft + marginRight} ${height + marginTop + marginBottom}`"
+      class="h-auto w-full border-2 border-dashed border-green-500 bg-slate-100"
     >
       <g :transform="`translate(${marginLeft}, ${marginTop})`">
         <g
@@ -138,7 +139,7 @@ async function moveTooltip(event: MouseEvent) {
           </text>
         </g>
       </g>
-      <g id="legend" :transform="`translate(${marginLeft + 20}, ${marginTop + height + 30})`">
+      <g id="legend" :transform="`translate(${marginLeft + 40}, ${marginTop + height + 30})`">
         <template v-for="(legendRow, i) in legendRows" :key="`legend-row-${i}`">
           <g
             v-for="(legendItem, j) in legendRow"

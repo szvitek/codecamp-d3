@@ -130,7 +130,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="chart-container relative" v-if="datasetCounties && datasetEdu!.length > 0">
+  <div class="chart-container relative w-full" v-if="datasetCounties && datasetEdu!.length > 0">
     <div
       ref="tooltipRef"
       id="tooltip"
@@ -146,9 +146,7 @@ onMounted(() => {
       </template>
     </div>
     <svg
-      :width="width + margin * 2"
-      :height="height + margin * 2"
-      :view-box="[0, 0, width, height]"
+      :viewBox="`0 0 ${width + margin * 2} ${height + margin * 2}`"
       class="border-2 border-dashed border-green-500 bg-slate-100"
     >
       <g id="legend" :transform="`translate(700, ${10})`">

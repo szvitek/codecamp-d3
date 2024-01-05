@@ -9,13 +9,19 @@ const urls = [
   'https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/video-game-sales-data.json'
 ]
 
+type Datasets = {
+  videogame: TreemapDataset | null
+  movie: TreemapDataset | null
+  kickstarter: TreemapDataset | null
+}
+
 export const useTreeMapStore = defineStore('treeMap', () => {
   const isLoading = ref(false)
   const selectedDataSet = ref<keyof typeof datasets>()
-  const datasets = reactive({
-    videogame: {},
-    movie: {},
-    kickstarter: {}
+  const datasets = reactive<Datasets>({
+    videogame: null,
+    movie: null,
+    kickstarter: null
   })
 
   const infos = reactive({
@@ -33,8 +39,8 @@ export const useTreeMapStore = defineStore('treeMap', () => {
     }
   })
 
-  const dataset = computed(() => {
-    if (!selectedDataSet.value) return
+  const dataset = computed<TreemapDataset | null>(() => {
+    if (!selectedDataSet.value) return null
     return datasets[selectedDataSet.value]
   })
 

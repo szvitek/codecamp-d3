@@ -99,18 +99,10 @@ export interface CountiesDataSet extends TopoJSON.Topology {
   transform: TopoJSON.Transform
 }
 
+// not sure about the correct type, but this seems to be fine
 export type TreemapDataset = {
   name: string
-  children: Categories[]
-}
-
-export type Categories = {
-  name: string
-  children: Category[]
-}
-
-export type Category = {
-  name: string
   category: string
-  value: string
+  value: number
+  children: TreemapDataset[]
 }

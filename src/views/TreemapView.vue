@@ -16,7 +16,7 @@ onMounted(async () => {
 
 <template>
   <DefaultLayout
-    title="Visualize Data with a Choropleth Map"
+    title="Visualize Data with a Treemap Diagram"
     :isLoading="isLoading || !info || !selectedDataSet"
   >
     <div class="flex w-1/2 items-center justify-evenly pb-5 text-center">

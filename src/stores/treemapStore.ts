@@ -16,7 +16,6 @@ type Datasets = {
 }
 
 export const useTreeMapStore = defineStore('treeMap', () => {
-  const isLoading = ref(false)
   const selectedDataSet = ref<keyof typeof datasets>()
   const datasets = reactive<Datasets>({
     videogame: null,
@@ -52,7 +51,6 @@ export const useTreeMapStore = defineStore('treeMap', () => {
 
   async function fetchData() {
     try {
-      isLoading.value = true
       const [{ data: dataKickstarter }, { data: dataMovie }, { data: dataVideogame }] =
         await Promise.all(urls.map((url) => axios.get<TreemapDataset>(url)))
 
@@ -63,10 +61,8 @@ export const useTreeMapStore = defineStore('treeMap', () => {
       selectedDataSet.value = 'videogame'
     } catch (e) {
       console.log(e)
-    } finally {
-      isLoading.value = false
     }
   }
 
-  return { isLoading, dataset, info, selectedDataSet, fetchData }
+  return { dataset, info, selectedDataSet, fetchData }
 })

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import ChartTitle from '@/components/ChartTitle.vue'
 import DefaultLayout from '@/components/DefaultLayout.vue'
@@ -8,17 +8,15 @@ import ChoroplethMap from '@/components/ChoroplethMap.vue'
 import ChoroplethMapD3 from '@/components/ChoroplethMapD3.vue'
 
 const store = useChoroplethMapStore()
-const { title: chartTitle, description, isLoading } = storeToRefs(store)
+const { title: chartTitle, description } = storeToRefs(store)
 
 const selectedMode = ref<'d3' | 'vue'>('d3')
 
-onMounted(async () => {
-  await store.fetchData()
-})
+await store.fetchData()
 </script>
 
 <template>
-  <DefaultLayout title="Visualize Data with a Choropleth Map" :isLoading="isLoading">
+  <DefaultLayout title="Visualize Data with a Choropleth Map">
     <div class="flex w-1/2 items-center justify-evenly pb-5 text-center">
       <div
         class="cursor-pointer hover:underline"

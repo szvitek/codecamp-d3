@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import ChartTitle from '@/components/ChartTitle.vue'
 import DefaultLayout from '@/components/DefaultLayout.vue'
@@ -7,18 +6,13 @@ import { useTreeMapStore } from '@/stores/treemapStore'
 import TreeMap from '@/components/TreeMap.vue'
 
 const store = useTreeMapStore()
-const { info, selectedDataSet, isLoading } = storeToRefs(store)
+const { info, selectedDataSet } = storeToRefs(store)
 
-onMounted(async () => {
-  await store.fetchData()
-})
+await store.fetchData()
 </script>
 
 <template>
-  <DefaultLayout
-    title="Visualize Data with a Treemap Diagram"
-    :isLoading="isLoading || !info || !selectedDataSet"
-  >
+  <DefaultLayout title="Visualize Data with a Treemap Diagram">
     <div class="flex w-1/2 items-center justify-evenly pb-5 text-center">
       <div
         class="cursor-pointer hover:underline"

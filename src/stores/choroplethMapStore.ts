@@ -9,7 +9,6 @@ const urlCounties =
   'https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/counties.json'
 
 export const useChoroplethMapStore = defineStore('choroplethMap', () => {
-  const isLoading = ref(false)
   const title = ref('United States Educational Attainment')
   const description = ref(
     "Percentage of adults age 25 and older with a bachelor's degree or higher (2010-2014)"
@@ -20,7 +19,6 @@ export const useChoroplethMapStore = defineStore('choroplethMap', () => {
 
   async function fetchData() {
     try {
-      isLoading.value = true
       const eduReq = axios.get<EducationDataset>(urlEdu)
       const countiesReq = axios.get<CountiesDataSet>(urlCounties)
       const [{ data: dataEdu }, { data: dataCounties }] = await Promise.all([eduReq, countiesReq])
@@ -29,10 +27,8 @@ export const useChoroplethMapStore = defineStore('choroplethMap', () => {
       datasetCounties.value = dataCounties
     } catch (e) {
       console.log(e)
-    } finally {
-      isLoading.value = false
     }
   }
 
-  return { title, description, datasetEdu, datasetCounties, isLoading, fetchData }
+  return { title, description, datasetEdu, datasetCounties, fetchData }
 })

@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+await new Promise((resolve) => setTimeout(resolve, 60000))
+</script>
 
 <template>
   <div class="p-8">

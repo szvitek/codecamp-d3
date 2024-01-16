@@ -11,19 +11,15 @@ const url =
 export const useBarChartStore = defineStore('barChart', () => {
   const title = ref('United States GDP')
   const dataset = ref<Dataset>([])
-  const isLoading = ref(false)
 
   async function fetchData() {
     try {
-      isLoading.value = true
       const { data } = await axios.get(url)
       dataset.value = data.data
     } catch (e) {
       console.log(e)
-    } finally {
-      isLoading.value = false
     }
   }
 
-  return { title, dataset, isLoading, fetchData }
+  return { title, dataset, fetchData }
 })

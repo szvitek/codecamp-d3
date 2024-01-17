@@ -1,23 +1,28 @@
 <script setup lang="ts">
 import DefaultLayout from '@/components/DefaultLayout.vue'
 import { RouterLink } from 'vue-router'
+import barChartSrc from '@/assets/images/bar-chart.png'
+import scatterplotSrc from '@/assets/images/scatterplot.png'
+import heatmapSrc from '@/assets/images/heatmap.png'
+import choroplethSrc from '@/assets/images/choropleth.png'
+import treemapSrc from '@/assets/images/treemap.png'
 
 const images = [
-  { id: 'bar-chart', src: '/images/bar-chart.png', title: 'Bar Chart', to: '/bar-chart' },
+  { id: 'bar-chart', src: barChartSrc, title: 'Bar Chart', to: '/bar-chart' },
   {
     id: 'scatterplot',
-    src: '/images/scatterplot.png',
+    src: scatterplotSrc,
     title: 'Scatterplot Graph',
     to: '/scatter-plot'
   },
-  { id: 'heatmap', src: '/images/heatmap.png', title: 'Heat Map', to: '/heat-map' },
+  { id: 'heatmap', src: heatmapSrc, title: 'Heat Map', to: '/heat-map' },
   {
     id: 'choropleth',
-    src: '/images/choropleth.png',
+    src: choroplethSrc,
     title: 'Choropleth Map',
     to: '/choropleth-map'
   },
-  { id: 'treemap', src: '/images/treemap.png', title: 'Treemap Diagram', to: '/tree-map' }
+  { id: 'treemap', src: treemapSrc, title: 'Treemap Diagram', to: '/tree-map' }
 ]
 </script>
 

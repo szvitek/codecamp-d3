@@ -1,6 +1,6 @@
 <template>
-  <nav class="flex h-16 items-center justify-end bg-white shadow">
-    <RouterLink v-for="({ name, to }, index) in menuItems" :key="index" :to="to">
+  <nav class="flex h-16 items-center justify-end bg-white text-xs shadow md:text-base">
+    <RouterLink v-for="({ name, to }, index) in menuItems" :key="index" :to="to" class="-m-1">
       {{ name }}
     </RouterLink>
   </nav>

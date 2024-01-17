@@ -28,7 +28,7 @@ const images = [
         <div
           v-for="image in images"
           :key="image.id"
-          class="border border-green-800 text-green-500 hover:text-green-800 hover:shadow-xl hover:shadow-green-800"
+          class="border border-green-500 text-green-400 hover:text-green-500 hover:shadow-xl hover:shadow-green-500"
         >
           <RouterLink :to="image.to">
             <h2 class="mb-4 text-4xl font-bold" text-center>{{ image.title }}</h2>
